@@ -1,6 +1,6 @@
 {
     "type": "symfony-bundle",
-    "name": "bor-a-dovech/event_bundle",
+    "name": "bor-a-dovech/event-bundle",
     "license": "proprietary",
     "require": {
         "php": "^7.3||^8.1",
