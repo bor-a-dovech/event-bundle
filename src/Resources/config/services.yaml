@@ -6,3 +6,6 @@ services:
     Pantheon\EventBundle\:
         resource: '../../*'
         exclude: '../../{DependencyInjection,DTO,Entity,Migrations,Tests,Security/Event,Kernel.php}'
+
+    GuzzleHttp\Client: ~
+    GuzzleHttp\ClientInterface: '@GuzzleHttp\Client'
