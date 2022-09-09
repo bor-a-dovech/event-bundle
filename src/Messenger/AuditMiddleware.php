@@ -2,16 +2,26 @@
 
 namespace Pantheon\EventBundle\Messenger;
 
-use Pantheon\UserBundle\Message\EmailNotification;
+use Pantheon\EventBundle\Manager\SendManager;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
 use Symfony\Component\Messenger\Middleware\StackInterface;
 
 class AuditMiddleware implements MiddlewareInterface
 {
+    private SendManager $sendManager;
+
+    public function __construct(
+        SendManager $sendManager
+    )
+    {
+        $this->sendManager = $sendManager;
+    }
+
     public function handle(Envelope $envelope, StackInterface $stack): Envelope
     {
-        $message = $envelope->getMessage(); // месадж может быть любого класса анть
+        $message = $envelope->getMessage();
+        $this->sendManager->send($message);
         return $stack->next()->handle($envelope, $stack);
     }
 }
